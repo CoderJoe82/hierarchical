@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load mptt_tags %}
+
+{% block title %}The Hierarchial Data{% endblock %}
+
+
+{% block content %}
+    <h1>Welcome to Hierarchial Data!</h1>
+    
+    <h2>Tree Data:</h2>
+    <ul>
+        {% recursetree nodes %}
+        <li>
+            {{ node.name }}
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+        {% endrecursetree %}
+    </ul>
+    <br>
+    <a href="{% url 'addcat' %}">
+       Add a new food
+    </a>
+    <br>
+
+
+{% endblock %}
